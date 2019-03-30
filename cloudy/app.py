@@ -1,6 +1,7 @@
 from flask import Flask
 
-from cloudy.cloudproc import lookup_cloud_info, determine_cloud_probabilities
+from cloudy.cloud_info import lookup_cloud_info
+from cloudy.cloud_processor import determine_cloud_probabilities
 
 
 app = Flask(__name__)
