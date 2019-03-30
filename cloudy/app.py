@@ -1,3 +1,5 @@
+import json
+
 from flask import Flask
 
 from cloudy.cloud_info import lookup_cloud_info
@@ -20,7 +22,8 @@ def get_cloud_info(cloud_name):
 
 @app.route('/cloud/prob/<zipcode>')
 def get_cloud_probabilities(zipcode):
-    return determine_cloud_probabilities(zipcode)
+    # Turns it into a json so frontend can use it
+    return json.dumps(determine_cloud_probabilities(zipcode))
 
 if __name__ == '__main__':
     app.run()

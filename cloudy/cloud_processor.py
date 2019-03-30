@@ -1,3 +1,5 @@
+import json
+
 import requests
 from collections import OrderedDict
 
@@ -31,9 +33,9 @@ def determine_cloud_probabilities(zipcode):
 
     is_raining = RAINING_ID < current_identity < THUNDERSTORM_ID
 
-    cloud_list = wind_rain_probability(density_prob, is_raining)
-    
-    return str(cloud_list) if cloud_list else 'No cloud probabilities found :('
+    potential_cloud_list = wind_rain_probability(density_prob, is_raining)
+
+    return potential_cloud_list if potential_cloud_list else []
 
 
 def temperature_probability(current_temp):
@@ -74,8 +76,7 @@ def wind_rain_probability(density_prob, is_raining):
 
     min_value = 1
     max_value = 0
-    min_cloud = ''
-    max_cloud = ''
+    min_cloud, max_cloud = None
     if is_raining:
         for cloud_name, density_value in rain_density_map.items():
             if density_value > density_prob:
@@ -90,10 +91,10 @@ def wind_rain_probability(density_prob, is_raining):
             potential_clouds.append((max_value, max_cloud))
     else:
         for cloud_name, density_value in density_map.items():
-            if density_value < density_prob:
+            if density_value <= density_prob:
                 min_value = density_value
                 min_cloud = cloud_name
-            if density_value > density_prob:
+            else:
                 max_value = density_value
                 max_cloud = cloud_name
                 break
