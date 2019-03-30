@@ -1,3 +1,15 @@
+CLEAR_SKY = 'Clear Sky'
+CIRRUS = 'Cirrus'
+CIRROCUMULS = 'Cirrocumuls'
+CIRROSTRATUS = 'Cirrostratus'
+ALTOCUMULUS = 'Altocumulus'
+CUMULUS = 'Cumulus'
+STRATOCUMULUS = 'Stratocumulus'
+ALTOSTRATUS = 'Altostratus'
+STRATUS = 'Stratus'
+CUMULONIMBUS = 'Cumulonimbus'
+NIMBOSTRATUS = 'Nimbostratus'
+
 CUMULUS_INFO = """Cumulus clouds form when the air within the cloud is warmer
                     than the surrounding air. Since warm air rises, the cloud
                     will expand upwards creating the puffy heaped look."""
@@ -40,16 +52,16 @@ CIRROSTRATUS_INFO = """ cirrostratus clouds """
 
 def lookup_cloud_info(cloud_name):
     cloud_info = {
-        'cumulus': CUMULUS_INFO,
-        'cumulonimbus': CUMULONIMBUS_INFO,
-        'stratus': STRATUS_INFO,
-        'stratocumulus': STRATOCUMULUS_INFO,
-        'altocumulus': ALTOCUMULUS_INFO,
-        'altostratus': ALTOSTRATUS_INFO,
-        'nimbostratus': NIMBOSTRATUS_INFO,
-        'cirrus': CIRRUS_INFO,
-        'cirrocumulus': CIRROCUMULUS_INFO,
-        'cirrostratus': CIRROSTRATUS_INFO,
+        CUMULUS.lower(): CUMULUS_INFO,
+        CUMULONIMBUS.lower(): CUMULONIMBUS_INFO,
+        STRATUS.lower(): STRATUS_INFO,
+        STRATOCUMULUS.lower(): STRATOCUMULUS_INFO,
+        ALTOCUMULUS.lower(): ALTOCUMULUS_INFO,
+        ALTOSTRATUS.lower(): ALTOSTRATUS_INFO,
+        NIMBOSTRATUS.lower(): NIMBOSTRATUS_INFO,
+        CIRRUS.lower(): CIRRUS_INFO,
+        CIRROCUMULS.lower(): CIRROCUMULUS_INFO,
+        CIRROSTRATUS.lower(): CIRROSTRATUS_INFO,
     }
 
     if cloud_name == 'all_clouds':
