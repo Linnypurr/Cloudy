@@ -2,6 +2,7 @@ from flask import Flask
 
 from cloudy.cloudproc import lookup_cloud_info, determine_cloud_probabilities
 
+
 app = Flask(__name__)
 
 
@@ -19,3 +20,6 @@ def get_cloud_info(cloud_name):
 @app.route('/cloud/prob/<zipcode>')
 def get_cloud_probabilities(zipcode):
     return determine_cloud_probabilities(zipcode)
+
+if __name__ == '__main__':
+    app.run()
