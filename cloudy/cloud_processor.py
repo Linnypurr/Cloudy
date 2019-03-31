@@ -1,5 +1,3 @@
-import json
-
 import requests
 from collections import OrderedDict
 
@@ -9,7 +7,6 @@ from cloudy.config import API_URL
 
 RAINING_ID = 300
 THUNDERSTORM_ID = 531
-
 PROBABILITY_SMOOTHING = .01
 
 
@@ -49,7 +46,7 @@ def wind_rain_probability(density_prob, is_raining):
     #                       (0.90, 'Stratus')]
     # density_dictionary = OrderedDict(density_dictionary)
 
-    density_map ={
+    density_map = {
         CLEAR_SKY: 0.0,
         CIRRUS: .1,
         CIRROCUMULS: .15,
@@ -76,7 +73,7 @@ def wind_rain_probability(density_prob, is_raining):
 
     min_value = 1
     max_value = 0
-    min_cloud, max_cloud = None
+    min_cloud, max_cloud = None, None
     if is_raining:
         for cloud_name, density_value in rain_density_map.items():
             if density_value > density_prob:
@@ -102,7 +99,31 @@ def wind_rain_probability(density_prob, is_raining):
         potential_clouds.append((min_value, min_cloud))
         potential_clouds.append((max_value, max_cloud))
 
+    potential_clouds = _find_probabilities_for_each_cloud(density_prob, potential_clouds)
     return potential_clouds
+
+
+def _find_probabilities_for_each_cloud(density_prob, potential_clouds):
+    lower_bound_value = potential_clouds[0][0]
+    upper_bound_value = potential_clouds[1][0]
+    lower_bound_value -= lower_bound_value
+    upper_bound_value -= lower_bound_value
+    density_prob -= lower_bound_value
+
+    upper_bound_prob = density_prob / upper_bound_value
+    upper_bound_prob *= 100
+    lower_bound_prob = 100 - upper_bound_prob
+
+    lower_bound_prob = '%.2f' % lower_bound_prob + '%'
+    upper_bound_prob = '%.2f' % upper_bound_prob + '%'
+    # subtract lowerbound from upper and density prob
+    # divide density prob by upperbound
+    # set lower bound to lower cloud (at 0th index)
+    # set upper bound to upper cloud (at 1st index)
+    # return the list :)
+    new_potential_clouds = [(lower_bound_prob, potential_clouds[0][1]), (upper_bound_prob, potential_clouds[1][1])]
+
+    return new_potential_clouds
 
 
 def _get_api_json(zipcode):
