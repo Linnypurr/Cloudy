@@ -1,6 +1,5 @@
 import json
-
-from flask import Flask
+from flask import Flask, Response
 
 from cloudy.cloud_info import lookup_cloud_info
 from cloudy.cloud_processor import determine_cloud_probabilities
@@ -22,8 +21,11 @@ def get_cloud_info(cloud_name):
 
 @app.route('/cloud/prob/<zipcode>')
 def get_cloud_probabilities(zipcode):
+    probabilities = json.dumps(determine_cloud_probabilities(zipcode))
+    resp = Response(probabilities)
+    resp.headers['Access-Control-Allow-Origin'] = '*'
     # Turns it into a json so frontend can use it
-    return json.dumps(determine_cloud_probabilities(zipcode))
+    return resp
 
 if __name__ == '__main__':
     app.run()
