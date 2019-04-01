@@ -16,7 +16,10 @@ def health_check():
 @app.route('/cloud/info', defaults={'cloud_name': 'all_clouds'})
 @app.route('/cloud/info/<cloud_name>')
 def get_cloud_info(cloud_name):
-    return lookup_cloud_info(cloud_name)
+    info = json.dumps(lookup_cloud_info(cloud_name))
+    resp = Response(info)
+    resp.headers['Access-Control-Allow-Origin'] = '*'
+    return resp
 
 
 @app.route('/cloud/prob/<zipcode>')
@@ -24,7 +27,6 @@ def get_cloud_probabilities(zipcode):
     probabilities = json.dumps(determine_cloud_probabilities(zipcode))
     resp = Response(probabilities)
     resp.headers['Access-Control-Allow-Origin'] = '*'
-    # Turns it into a json so frontend can use it
     return resp
 
 if __name__ == '__main__':
