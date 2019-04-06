@@ -1,6 +1,6 @@
 CLEAR_SKY = 'Clear Sky'
 CIRRUS = 'Cirrus'
-CIRROCUMULS = 'Cirrocumuls'
+CIRROCUMULUS = 'Cirrocumulus'
 CIRROSTRATUS = 'Cirrostratus'
 ALTOCUMULUS = 'Altocumulus'
 CUMULUS = 'Cumulus'
@@ -52,16 +52,16 @@ CIRROSTRATUS_INFO = """ cirrostratus clouds """
 
 def lookup_cloud_info(cloud_name):
     cloud_info = {
-        CUMULUS.lower(): CUMULUS_INFO,
-        CUMULONIMBUS.lower(): CUMULONIMBUS_INFO,
-        STRATUS.lower(): STRATUS_INFO,
-        STRATOCUMULUS.lower(): STRATOCUMULUS_INFO,
-        ALTOCUMULUS.lower(): ALTOCUMULUS_INFO,
-        ALTOSTRATUS.lower(): ALTOSTRATUS_INFO,
-        NIMBOSTRATUS.lower(): NIMBOSTRATUS_INFO,
-        CIRRUS.lower(): CIRRUS_INFO,
-        CIRROCUMULS.lower(): CIRROCUMULUS_INFO,
-        CIRROSTRATUS.lower(): CIRROSTRATUS_INFO,
+        CUMULUS: CUMULUS_INFO,
+        CUMULONIMBUS: CUMULONIMBUS_INFO,
+        STRATUS: STRATUS_INFO,
+        STRATOCUMULUS: STRATOCUMULUS_INFO,
+        ALTOCUMULUS: ALTOCUMULUS_INFO,
+        ALTOSTRATUS: ALTOSTRATUS_INFO,
+        NIMBOSTRATUS: NIMBOSTRATUS_INFO,
+        CIRRUS: CIRRUS_INFO,
+        CIRROCUMULUS: CIRROCUMULUS_INFO,
+        CIRROSTRATUS: CIRROSTRATUS_INFO,
     }
 
     if cloud_name == 'all_clouds':
