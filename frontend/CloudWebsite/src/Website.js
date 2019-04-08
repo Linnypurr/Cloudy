@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-
+import './style.css'
 
 class Website extends Component {
 
@@ -22,9 +22,15 @@ class Website extends Component {
 
   render () {
       return(
-        <div >
-            <input type="text" value={this.state.zipValue} onChange={this.handleChange} />
-            <Submit zipValue={this.state.zipValue} />
+        <div>
+            <div className="Title">
+                <h1>Cloud Probability</h1>
+                <h4>Enter your zipcode:</h4>
+            </div>
+            <div className="textDiv">
+                <input type="text" className="textInput" value={this.state.zipValue} onChange={this.handleChange} />
+                <Submit zipValue={this.state.zipValue} />
+            </div>
         </div>
         );
 
@@ -69,15 +75,17 @@ class Submit extends Component {
      const cloud2name = this.state.cloud2name
 
         return(
+        <div>
+            <input type="submit" className="submitInput" value="submit" onClick={this.handleClick}></input>
             <div>
-                <input type="submit" value="submit" onClick={this.handleClick}></input>
-                  <p>{this.state.cloud1prob}</p>
-                  <p>{this.state.cloud1name}</p>
-                <Results isReady = {isReady} cloudName = {cloud1name} />
-                  <p>{this.state.cloud2prob}</p>
-                  <p>{this.state.cloud2name}</p>
-                <Results isReady = {isReady} cloudName = {cloud2name} />
+              <h3 className ="probText">{this.state.cloud1prob}</h3>
+              <h3 className ="probText">{this.state.cloud1name}</h3>
+            <Results isReady = {isReady} cloudName = {cloud1name} />
+              <h3 className ="probText">{this.state.cloud2prob}</h3>
+              <h3 className ="probText">{this.state.cloud2name}</h3>
+            <Results isReady = {isReady} cloudName = {cloud2name} />
             </div>
+        </div>
         );
 
 
@@ -114,7 +122,7 @@ class Results extends Component {
         return(
             <div>
             <img src={require("./CloudPictures/"+cloudName+'.jpg')} alt="" height="400" width="600" onClick={this.handleImgClick} />
-            <p>{this.state.infoText}</p>
+            <h4 className="infoText">{this.state.infoText}</h4>
             </div>
         );
     }
