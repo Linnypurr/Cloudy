@@ -83,11 +83,12 @@ def wind_rain_probability(density_prob, is_raining):
         if min_value != 1:
             min_cloud = rain_density_map.get(min_value)
             potential_clouds.append((min_value, min_cloud))
-            potential_clouds.append((.5, CUMULUS)) #FIX THIS
+            potential_clouds.append((.9, STRATUS)) #FIX THIS
         else:
             max_cloud = rain_density_map.get(max_value)
-            potential_clouds.append((max_value, max_cloud))
             potential_clouds.append((.5, CUMULUS))
+            potential_clouds.append((max_value, max_cloud))
+
     else:
         for cloud_name, density_value in density_map.items():
             if density_value <= density_prob:

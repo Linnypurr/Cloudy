@@ -16,11 +16,11 @@ CUMULUS_INFO = """Cumulus clouds form when the air within the cloud is warmer
 CUMULONIMBUS_INFO = """ Cumulonimbus clouds grow to such great heights that
                             the water droplets within the top cloud will freeze
                             and fall to the earth as heavy rain."""
-STRATUS_INFO = """The featureless flat stratus clouds that expand across the visible '
+STRATUS_INFO = """The featureless flat stratus clouds that expand across the visible
                         sky form when a warm air mass collides with a cool air mass.
                         This causes the warm air to lift upwards and cool down enough
                         to form a cloud layer."""
-STRATOCUMULUS_INFO = """Stratocumulus clouds typically form when warmer more '
+STRATOCUMULUS_INFO = """Stratocumulus clouds typically form when warmer more
                                stable air traps moisture rising from the sea or earth
                                after heavy rain. The moisture will form into a flat layer
                                of puffy clouds."""
