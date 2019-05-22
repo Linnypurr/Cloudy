@@ -61,7 +61,7 @@ class Submit extends Component {
     }
 
     handleClick () {
-        const urlApi = 'http://localhost:5000/cloud/prob/';
+        const urlApi = 'http://cloudy.linnypur.me/cloud/prob/';
         const zipcode = this.props.zipValue
         axios.get(urlApi + zipcode)
             .then(response => this.setState({cloud1prob: response.data[0][0], cloud1name: response.data[0][1]
@@ -107,7 +107,7 @@ class Results extends Component {
     }
 
     handleImgClick () {
-        const urlApi = 'http://localhost:5000/cloud/info/';
+        const urlApi = 'http://cloudy.linnypur.me/cloud/info/';
         const picInfo = this.props.cloudName
         axios.get(urlApi + picInfo)
             .then(response => this.setState({infoText: response.data}))
